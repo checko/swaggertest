@@ -5,17 +5,11 @@ from flask import request, g
 
 from . import Resource
 from .. import schemas
-from . import userslist
+from .newuser import newuser
 
 class UserUseridNew(Resource):
 
     def post(self, userid):
-        print(userid)
-        user = {
-                'email': request.get_json().get('email'),
-                'realname': request.get_json().get('realname')
-                }
-        userslist.append(user)
-        print(userslist)
+        my = newuser()
 
-        return None, 200, None
+        return my.post(userid) 

@@ -5,11 +5,15 @@ from flask import request, g, make_response
 
 from . import Resource
 from .. import schemas
-from .alluser import alluser
+from . import userslist
 
-class Users(Resource):
+
+class alluser(Resource):
 
     def get(self):
-        my = alluser()
+        msg = {
+                'data' : userslist
+            }
+        print(msg)
 
-        return my.get()
+        return make_response(msg, 200)
