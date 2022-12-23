@@ -5,6 +5,11 @@ import flask_restful as restful
 
 from ..validators import request_validate, response_filter
 
-
+userslist=    [
+        {
+            'email' : 'abc@abc',
+            'realname' : 'abc.lin'
+        }
+    ]
 class Resource(restful.Resource):
     method_decorators = [request_validate, response_filter]
