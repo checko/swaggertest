@@ -5,7 +5,7 @@ from flask import request, g
 
 from . import Resource
 from .. import schemas
-from .newuser import newuser
+from .mymodule.newuser import newuser
 
 class UserUseridNew(Resource):
 

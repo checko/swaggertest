@@ -5,7 +5,7 @@ from flask import request, g, make_response
 
 from . import Resource
 from .. import schemas
-from .alluser import alluser
+from .mymodule.alluser import alluser
 
 class Users(Resource):
 
