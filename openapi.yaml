@@ -1,0 +1,91 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Hello API
+  description: An API to return hello in request language
+  
+servers:
+  - url: http://127.0.0.1:5000/v1
+    description: local server
+  
+paths:
+  /api:
+    get:
+      tags:
+        - Hello
+      description: Return hello in specified language
+      parameters:
+        - in: query
+          name: lang
+          required: true
+          description: language
+          schema:
+            type: string
+            example: es
+      
+      responses:
+        '200':
+          description: hello in 
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: hoa
+  /users:
+    get:
+      tags:
+        - User
+      description: list all users
+      responses:
+        '200':
+          description: all users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUsersList'
+  /user/{userid}/new:
+    post:
+      tags:
+        - User
+      description: Add New User
+      parameters:
+      - in: path
+        name: userid
+        required: true
+        description: user's nickname
+        schema:
+          type: string
+      requestBody:
+        description: Email and full name
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewUser"
+      responses:
+        '200':
+          description: "Success request"
+        '400':
+          description: "Bad request"
+
+components:
+  schemas:
+    NewUser:
+      type: object
+      required:
+      - email
+      - realname
+      properties:
+        email:
+          type: string
+        realname:
+          type: string
+      additionalProperties: false
+    GetUsersList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewUser'
+          
+
